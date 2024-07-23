@@ -5,11 +5,17 @@ const connectToMongoDB = require("./db");
 dotenv.config();
 
 const app = express();
+// Middlewares
 app.use(express.json());
+
+// Routes
+const medicineRoutes = require("./medicine/routes");
+
+app.use("/medicine", medicineRoutes);
 
 connectToMongoDB();
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
     res.send(process.env.BACKEND_STATUS_TEXT);
 });
 
