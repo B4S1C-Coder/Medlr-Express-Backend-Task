@@ -1,14 +1,15 @@
 {
   "name": "medlr-express-backend-task",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Medlr Backend Internship Task",
+  "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/server.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Saksham Mittal",
+  "license": "MIT",
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
