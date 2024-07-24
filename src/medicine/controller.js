@@ -11,6 +11,7 @@ exports.getMedicineById = async (req, res) => {
 
         res.json(medicine);
     } catch (err) {
+        // Check if id is invalid
         if (err.name === "CastError" && err.kind === "ObjectId") {
             res.status(400).json({ message: "Invalid Medicine ID format." });
             return;
@@ -26,6 +27,7 @@ exports.createMedicine = async (req, res) => {
         const savedMedicine = await medicine.save();
         res.json(savedMedicine);
     } catch (err) {
+        // Check if it is a validation error
         if (err.name === "ValidationError") {
             const errors = Object.values(err.errors).map((error) => error.message);
             res.status(400).json({ message: "Invalid creation parameters", ...errors });
@@ -56,10 +58,12 @@ exports.updateMedicineById = async (req, res) => {
         }
         res.json(updatedMedicine);
     } catch (err) {
+        // Check if id is invalid
         if (err.name === "CastError" && err.kind === "ObjectId") {
             res.status(400).json({ message: "Invalid Medicine ID format." });
             return;
         }
+        // Check if it is a validation error
         if (err.name === "ValidationError") {
             const errors = Object.values(err.errors).map((error) => error.message);
             res.status(400).json({ message: "Invalid creation parameters", ...errors });
@@ -79,6 +83,7 @@ exports.deleteMedicineById = async (req, res) => {
         }
         res.status(204).end();
     } catch (err) {
+        // Check if id is invalid
         if (err.name === "CastError" && err.kind === "ObjectId") {
             res.status(400).json({ message: "Invalid Medicine ID format." });
             return;
