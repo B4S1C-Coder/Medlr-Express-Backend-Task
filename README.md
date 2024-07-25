@@ -23,7 +23,8 @@ The endpoints can be be found on [Postman Documentation](https://documenter.getp
         "imageURL": "http://dummyimage.com/186x173.png/5fa2dd/ffffff",
         "quantity": 5,
         "cached": false
-    }```
+    }
+    ```
 
 - **Create a medicine**: Create a medicine
     - Endpoint: `/medicine/`
@@ -37,7 +38,8 @@ The endpoints can be be found on [Postman Documentation](https://documenter.getp
         "discountPrice": 250.78,
         "quantity": 5,
         "imageURL": "http://dummyimage.com/186x173.png/5fa2dd/ffffff"
-    }```
+    }
+    ```
     - Example Response Body (201 Created):
     ```json
     {
@@ -51,7 +53,8 @@ The endpoints can be be found on [Postman Documentation](https://documenter.getp
         "createdAt": "2024-07-25T15:05:22.071Z",
         "updatedAt": "2024-07-25T15:05:22.071Z",
         "__v": 0
-    }```
+    }
+    ```
 
 - **Update a medicine (by id)**
     - Endpoint: `/medicine/:id`
@@ -60,7 +63,8 @@ The endpoints can be be found on [Postman Documentation](https://documenter.getp
     ```json
     {
         "quantity": 45
-    }```
+    }
+    ```
     - Example Response Body (200 OK):
     ```json
     {
@@ -74,7 +78,8 @@ The endpoints can be be found on [Postman Documentation](https://documenter.getp
         "createdAt": "2024-07-25T15:05:22.071Z",
         "updatedAt": "2024-07-25T15:08:21.570Z",
         "__v": 0
-    }```
+    }
+    ```
 
 - **Delete a medicine (by id)**
     - Endpoint: `/medicine/:id`
@@ -117,7 +122,8 @@ The endpoints can be be found on [Postman Documentation](https://documenter.getp
             "quantity": 5
             }
         ]
-    }```
+    }
+    ```
 
 ## Setup (locally)
 1. Clone the repo via `git clone https://github.com/B4S1C-Coder/Medlr-Express-Backend-Task`
