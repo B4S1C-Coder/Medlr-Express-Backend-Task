@@ -10,5 +10,7 @@ const medicineSchema = new mongoose.Schema({
 },{
     timestamps: true
 });
+// Indices for searching
+medicineSchema.index({ name: "text", manufacturer: "text" });
 
 module.exports = mongoose.model("Medicine", medicineSchema);
