@@ -13,7 +13,8 @@ The endpoints can be be found on [Postman Documentation](https://documenter.getp
     - Endpoint: `/medicine/:id`
     - Method: `GET`
     - Example Response (200 OK):
-    `{
+    ```json
+    {
         "_id": "66a0cc6bfc13ae10a3234693",
         "name": "Mineral oil, Petrolatum, Phenylephrine HCl, Shark liver oil",
         "manufacturer": "H E B",
@@ -22,22 +23,24 @@ The endpoints can be be found on [Postman Documentation](https://documenter.getp
         "imageURL": "http://dummyimage.com/186x173.png/5fa2dd/ffffff",
         "quantity": 5,
         "cached": false
-    }`
+    }```
 
 - **Create a medicine**: Create a medicine
     - Endpoint: `/medicine/`
     - Method: `POST`
     - Example Request Body:
-    `{
+    ```json
+    {
         "name": "Test Medicine",
         "manufacturer": "Test Manufactuer",
         "price": 1589.56,
         "discountPrice": 250.78,
         "quantity": 5,
         "imageURL": "http://dummyimage.com/186x173.png/5fa2dd/ffffff"
-    }`
+    }```
     - Example Response Body (201 Created):
-    `{
+    ```json
+    {
         "name": "Test Medicine",
         "price": 1589.56,
         "discountPrice": 250.78,
@@ -48,17 +51,19 @@ The endpoints can be be found on [Postman Documentation](https://documenter.getp
         "createdAt": "2024-07-25T15:05:22.071Z",
         "updatedAt": "2024-07-25T15:05:22.071Z",
         "__v": 0
-    }`
+    }```
 
 - **Update a medicine (by id)**
     - Endpoint: `/medicine/:id`
     - Method: `PUT` or `PATCH` (prefer `PATCH`)
     - Example Request Body: (You can specify more than one field)
-    `{
+    ```json
+    {
         "quantity": 45
-    }`
+    }```
     - Example Response Body (200 OK):
-    `{
+    ```json
+    {
         "_id": "66a269b2b23d12fa9e36f544",
         "name": "Test Medicine",
         "price": 1589.56,
@@ -69,7 +74,7 @@ The endpoints can be be found on [Postman Documentation](https://documenter.getp
         "createdAt": "2024-07-25T15:05:22.071Z",
         "updatedAt": "2024-07-25T15:08:21.570Z",
         "__v": 0
-    }`
+    }```
 
 - **Delete a medicine (by id)**
     - Endpoint: `/medicine/:id`
@@ -80,7 +85,8 @@ The endpoints can be be found on [Postman Documentation](https://documenter.getp
     - Example Endpoint: `/medicine/search?name=Guaif&manufacturer=Des&limit=3&sortField=manufacturer&sortOrder=desc`
     - Method: `GET`
     - Example Response:
-    `{
+    ```json
+    {
         "cached": false,
         "normal": [
             {
@@ -111,7 +117,7 @@ The endpoints can be be found on [Postman Documentation](https://documenter.getp
             "quantity": 5
             }
         ]
-    }`
+    }```
 
 ## Setup (locally)
 1. Clone the repo via `git clone https://github.com/B4S1C-Coder/Medlr-Express-Backend-Task`
