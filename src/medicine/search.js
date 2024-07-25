@@ -1,16 +1,19 @@
 const Medicine = require("./model");
+const redisClient = require("../redisClient");
 
 exports.executeSearch = async (req, res) => {
     try {
         const { name, manufacturer, sortField = "name", sortOrder = "asc", limit = 10 } = req.query;
 
-        // This is unreliable (maynot work if indices not setup correctly)
-        // Uncomment to use and remember to include it in response!
-        // const indicesSearchResults = await Medicine.find({
-        //     $text: { $search: `${name} ${manufacturer}`.trim() }
-        // });
+        // Checking if this search exists in cache
+        const cacheKey = `search:${name || "all"}:${manufacturer || "all"}`;
 
-        // A reliable fallback
+        const cachedResults = await redisClient.get(cacheKey);
+        if (cachedResults) {
+            return res.json({ cached: true, normal: JSON.parse(cachedResults) });
+        }
+
+        // Not found in cache, so perform search on MongoDB
         const searchResults = await Medicine.find({
             // search query
             $or: [
@@ -23,7 +26,10 @@ exports.executeSearch = async (req, res) => {
             // the maxmum number of responses
             .limit(parseInt(limit));
 
-        res.json({normal: searchResults});
+        // Save to Redis cache for 10 minutes
+        await redisClient.setEx(cacheKey, 600, JSON.stringify(searchResults));
+
+        res.json({ cached: false, normal: searchResults });
 
     } catch (err) {
         console.log(err);

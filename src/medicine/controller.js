@@ -1,15 +1,35 @@
 const Medicine = require("./model");
+const redisClient = require("../redisClient");
 
 exports.getMedicineById = async (req, res) => {
     try {
-        const medicine = await Medicine.findById(req.params.id);
 
-        if (!medicine) {
-            res.status(404).json({ message: `Medicine : ${req.params.id} was not found.` });
+        const id = req.params.id;
+
+        if ((id === undefined) || (id === null)) {
+            res.status(400).json({message: "Medicine id was not provided"});
             return;
         }
 
-        res.json(medicine);
+        // Check if it exists in cache
+        const cacheKey = `MedicineID:${id}`;
+
+        const cachedResult = await redisClient.get(cacheKey);
+        if (cachedResult) {
+            return res.json({ ...JSON.parse(cachedResult), cached: true });
+        }
+
+        const medicine = await Medicine.findById(id);
+
+        if (!medicine) {
+            res.status(404).json({ message: `Medicine : ${id} was not found.` });
+            return;
+        }
+
+        // Save to cache for 10 mins
+        await redisClient.setEx(cacheKey, 600, JSON.stringify(medicine));
+
+        res.json({ ...medicine._doc, cached: false });
     } catch (err) {
         // Check if id is invalid
         if (err.name === "CastError" && err.kind === "ObjectId") {
