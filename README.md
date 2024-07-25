@@ -137,3 +137,5 @@ The endpoints can be be found on [Postman Documentation](https://documenter.getp
 >**Note**: Optionally you can seed your MongoDB with initial data provided in [MOCK_DATA.json](MOCK_DATA.json) via MongoDB Compass or Atlas.
 
 >**Note**: If you intend to use locally hosted MongoDB and Redis do ensure if any additional dependecies (like bindings etc.) need to be installed. The [package.json](package.json) assumes that you are using remotely hosted MongoDB (Atlas) and Redis (Render).
+
+>**Note**: Due to unavailability of Cloud Storage Services (like AWS S3, Azure Blob Storage, etc. ) within the free tier (or requiring a credit card i.e. not accessible from a student account), I couldn't implement image upload. Due to resource constraints, I decided against storing images in the express server itself.
