@@ -45,7 +45,7 @@ exports.createMedicine = async (req, res) => {
     try {
         const medicine = new Medicine(req.body);
         const savedMedicine = await medicine.save();
-        res.json(savedMedicine);
+        res.status(201).json(savedMedicine);
     } catch (err) {
         // Check if it is a validation error
         if (err.name === "ValidationError") {

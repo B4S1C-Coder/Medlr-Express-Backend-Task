@@ -10,7 +10,7 @@ router.get("/search", search.executeSearch);
 
 // CRUD Routes
 router.get("/:id", controller.getMedicineById);
-router.post("/:id", controller.createMedicine);
+router.post("", controller.createMedicine);
 router.put("/:id", controller.updateMedicineById);
 router.patch("/:id", controller.updateMedicineById);
 router.delete("/:id", controller.deleteMedicineById);
